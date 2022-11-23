@@ -1,6 +1,8 @@
 public class TADLista implements ITADLista {
     private ListaEncadeada Lista;
     private No primeiro;
+     private No head;
+    private No tail;
 
     private No ultimo;
     private No atual;
@@ -8,6 +10,10 @@ public class TADLista implements ITADLista {
     private No anterior;
 
     public TADLista() {
+        this.head = new No(null);
+        this.tail = new No(null);
+        head.setNext(tail);
+        tail.setPrev(head);
         this.Lista = new ListaEncadeada();
     }
 
