@@ -11,7 +11,7 @@ public interface ITADLista {
 
     public void insertLast(Object elemento);
 
-    public void remove(int index);
+    public void removePorPosicao(int index);
 
     public void Before(int index);
 

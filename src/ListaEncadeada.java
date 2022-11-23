@@ -1,7 +1,6 @@
 public class ListaEncadeada {
     private No primeiro;
     private No ultimo;
-
     private No atual;
     private int tamanho;
 
@@ -34,14 +33,17 @@ public class ListaEncadeada {
         this.tamanho = tamanho;
     }
 
-    public void adicionar(Object novoElemento) {
+    public void adicionarUltimo(Object novoElemento) {
         No novoNo = new No(novoElemento);
         //passando o valor para o nó
         if (this.primeiro == null && this.ultimo == null) {
             this.primeiro = novoNo;
 
         } else {
+            //novoNo como novo ultimo
             this.ultimo.setNext(novoNo);
+            //último antigo como o anterior do novoNo(último atual)
+            novoNo.setPrev(ultimo);
         }
         this.ultimo = novoNo;
         this.tamanho++;
@@ -54,10 +56,14 @@ public class ListaEncadeada {
             this.primeiro = novoNo;
             this.ultimo = novoNo;
 
+
         }else {
+            //antigo primeiro como próximo do novoNo(primeiro atual)
             novoNo.setNext(primeiro);
+            //novoNo como novo primeiro
             this.primeiro=novoNo;
         }
+        atual = novoNo;
         this.tamanho++;
     }
 
@@ -80,15 +86,14 @@ public class ListaEncadeada {
         }
         atual = atual.getNext();
         this.tamanho--; // testar
-
     }
 
     public No get(int posicao){
         //é um metodo para visualizar todos da lista e encontrar o elemento que foi repassado
         No atual = this.primeiro;
         for (int i = 0; i < posicao; i++) {
+            //verifico se o atual tem próximo
             if (atual.getNext() != null) {
-                //verifico se o atual tem próximo
                 atual = atual.getNext();
                 //assim eu avanço na lista
             }

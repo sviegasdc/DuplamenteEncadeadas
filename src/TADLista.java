@@ -1,43 +1,78 @@
 public class TADLista implements ITADLista {
     private ListaEncadeada Lista;
+    private No primeiro;
+
+    private No ultimo;
+    private No atual;
+
+    private No anterior;
 
     public TADLista() {
         this.Lista = new ListaEncadeada();
     }
 
-    public void replaceElement(int index, Object element) {
+    public void replaceElement(int posicao, Object novoElemento) {
+        No novoNo = new No(novoElemento);
+        this.atual = primeiro;
+        for(int i=0; i<=posicao;i++){
+            this.atual = atual.getNext();
+        }
+        this.atual.setElement(novoNo);
+        //para o replace precisa setar o anterior e o próximo?
+
+    }
+    public void swapElement(int posicaoElemento1, int posicaoElemento2) {
 
     }
 
-    public void swapElement(int indexElemento1, int indexElemento2) {
+    public void insertBefore(int posicao, Object novoElemento) {
+
 
     }
 
-    public void insertBefore(int index, Object element) {
+    public void insertAfter(int posicao, Object novoElemento) {
 
     }
 
-    public void insertAfter(int index, Object element) {
+    public void insertFirst(Object novoElemento) {
+        Lista.adicionarInicio(novoElemento);
 
     }
 
-    public void insertFirst(Object element) {
+    public void insertLast(Object novoElemento) {
+        Lista.adicionarUltimo(novoElemento);
 
     }
-
-    public void insertLast(Object element) {
-
+    @Override
+    public void removePorPosicao(int posicao) {
+        //se a lista n estiver vazia
+        if(!isEmpty()) {
+            for (int i = 0; i <= posicao; i++) {
+                this.atual = atual.getNext();
+            }
+            //anterior do atual vai apontar pra o próximo do atual
+            //anterior => atual => próximo / anterior => próximo
+            (atual.getPrev()).setNext(atual.getNext());
+            //anterior <= próximo
+            (atual.getNext()).setPrev(atual.getPrev());
+        }
+    }
+    public void Before(int posicao) {
+        if(!isEmpty()) {
+            for (int i = 0; i <= posicao; i++) {
+                this.atual = atual.getNext();
+            }
+        }
+        System.out.println("Anterior aponta para: "+atual.getPrev());
     }
 
-    public void remove(int index) {
-
-    }
-
-    public void Before(int index) {
-
-    }
-
-    public void After(int index) {
+    public void After(int posicao) {
+        if(!isEmpty()) {
+            for (int i = 0; i <= posicao; i++) {
+                this.atual = atual.getNext();
+            }
+        }
+        System.out.println("Próximo aponta para: "+atual.getNext());
 
     }
 
@@ -57,7 +92,16 @@ public class TADLista implements ITADLista {
         return Lista.getPrimeiro()==null;
     }
 
-    public String mostrar(){
-        return Lista.toString();
+    public String toString(){
+        String texto = "";
+        texto += String.format("%s ", atual.toString());
+
+        if (atual.getNext() != null)
+            texto += String.format("=> %s", atual.getNext().toString());
+
+        if (atual.getPrev() != null)
+            texto += String.format("<= %s", atual.getPrev().toString());
+
+        return texto;
     }
 }
