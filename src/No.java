@@ -25,7 +25,7 @@ public class No {
     }
 
     public No getPrev(){
-        return next;
+        return prev;
     }
 
     public void setPrev(No prev) {

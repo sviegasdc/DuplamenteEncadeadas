@@ -5,7 +5,6 @@ public class ListaEncadeada {
     private int tamanho;
 
     public ListaEncadeada() {
-
         this.tamanho = 0;
     }
 
@@ -37,7 +36,7 @@ public class ListaEncadeada {
         No novoNo = new No(novoElemento);
         //passando o valor para o nó
         if (this.primeiro == null && this.ultimo == null) {
-            this.primeiro = novoNo;
+            setPrimeiro(novoNo);
 
         } else {
             //novoNo como novo ultimo
@@ -51,17 +50,16 @@ public class ListaEncadeada {
 
     public void adicionarInicio(Object novoElemento) {
         No novoNo = new No(novoElemento);
-        //pasando o valor para o no
+        //passando o valor para o nó
         if(this.primeiro==null && this.ultimo==null) {
-            this.primeiro = novoNo;
-            this.ultimo = novoNo;
-
+            setPrimeiro(novoNo);
+            setUltimo(novoNo);
 
         }else {
             //antigo primeiro como próximo do novoNo(primeiro atual)
             novoNo.setNext(primeiro);
             //novoNo como novo primeiro
-            this.primeiro=novoNo;
+            primeiro = novoNo;
         }
         atual = novoNo;
         this.tamanho++;

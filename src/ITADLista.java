@@ -1,25 +1,25 @@
 public interface ITADLista {
-    public void replaceElement(int index, Object elemento);
+    public void replaceElement(No posicao, Object novoElemento);
 
-    public void swapElement(int indexElemento1, int indexElemento2);
+    public void swapElement(No posicaoElemento1, No posicaoElemento2);
 
-    public void insertBefore(int index, Object elemento);
+    public void insertBefore(No posicao, Object novoElemento);
 
-    public void insertAfter(int index, Object elemento);
+    public void insertAfter(No posicao, Object novoElemento);
 
-    public void insertFirst(Object elemento);
+    public void insertFirst(Object novoElemento);
 
-    public void insertLast(Object elemento);
+    public void insertLast(Object novoElemento);
 
-    public void removePorPosicao(int index);
+    public void removePorPosicao(No posicao);
 
-    public void Before(int index);
+    public void Before(No posicao);
 
-    public void After(int index);
+    public void After(No posicao);
 
-    public void isLast();
+    public void isLast(No posicao);
 
-    public void isFirst();
+    public void isFirst(No posicao);
 
     public void size();
 

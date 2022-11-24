@@ -3,111 +3,117 @@ public class TADLista implements ITADLista {
     private No primeiro;
      private No head;
     private No tail;
-
     private No ultimo;
     private No atual;
-
     private No anterior;
+    private int tamanho;
 
     public TADLista() {
+        //dando erro de "Lista is null" sem isso
+        this.Lista = new ListaEncadeada();
+        //nós sentinelas
         this.head = new No(null);
         this.tail = new No(null);
         head.setNext(tail);
         tail.setPrev(head);
-        this.Lista = new ListaEncadeada();
+        this.tamanho = 0;
     }
 
-    public void replaceElement(int posicao, Object novoElemento) {
+    public void replaceElement(No posicao, Object novoElemento) {
         No novoNo = new No(novoElemento);
-        this.atual = primeiro;
-        for(int i=0; i<=posicao;i++){
-            this.atual = atual.getNext();
-        }
-        this.atual.setElement(novoNo);
-        //para o replace precisa setar o anterior e o próximo?
+        posicao.setElement(novoNo);
+        //não é necessário setar o anterior e o próximo
 
     }
-    public void swapElement(int posicaoElemento1, int posicaoElemento2) {
+    public void swapElement(No posicaoElemento1, No posicaoElemento2) {
 
     }
 
-    public void insertBefore(int posicao, Object novoElemento) {
+    public void insertBefore(No posicao, Object novoElemento) {
+        No novoNo = new No(novoElemento);
 
-
+        //novoNo <= posição
+        posicao.setPrev(novoNo);
+        //novoNo => posição
+        novoNo.setNext(posicao);
+        //anterior (do posição) <= novoNo
+        novoNo.setPrev(posicao.getPrev());
+        //novoNo => próximo (do atual)
+        novoNo.setNext(posicao.getNext());
+        tamanho++;
     }
 
-    public void insertAfter(int posicao, Object novoElemento) {
+    public void insertAfter(No posicao, Object novoElemento) {
+        No novoNo = new No(novoElemento);
+
+        //posição <= novoNo
+        novoNo.setPrev(posicao);
+        //novoNo => próximo (do atual)
+        novoNo.setNext(posicao.getNext());
+        //novoNo <= próximo (do atual)
+        (posicao.getNext()).setPrev(novoNo);
+        //posição => novoNo
+        posicao.setNext(novoNo);
+        tamanho++;
 
     }
 
     public void insertFirst(Object novoElemento) {
+        No novoNo = new No(novoElemento);
         Lista.adicionarInicio(novoElemento);
-
+        head.setNext(novoNo);
+        novoNo.setPrev(head);
     }
 
     public void insertLast(Object novoElemento) {
+        No novoNo = new No(novoElemento);
         Lista.adicionarUltimo(novoElemento);
-
+        tail.setPrev(novoNo);
+        novoNo.setNext(tail);
     }
-    @Override
-    public void removePorPosicao(int posicao) {
-        //se a lista n estiver vazia
-        if(!isEmpty()) {
-            for (int i = 0; i <= posicao; i++) {
-                this.atual = atual.getNext();
-            }
-            //anterior do atual vai apontar pra o próximo do atual
+
+    public void removePorPosicao(No posicao) {
             //anterior => atual => próximo / anterior => próximo
-            (atual.getPrev()).setNext(atual.getNext());
+            (posicao.getPrev()).setNext(posicao.getNext());
             //anterior <= próximo
-            (atual.getNext()).setPrev(atual.getPrev());
+            (posicao.getNext()).setPrev(posicao.getPrev());
+            tamanho--;
+    }
+
+    public void Before(No posicao) {
+        System.out.println("Anterior do nó "+posicao+"aponta para: "+posicao.getPrev());
+    }
+
+    public void After(No posicao) {
+        System.out.println("Próximo do nó "+posicao+"aponta para: "+posicao.getNext());
+    }
+
+    public void isLast(No posicao) {
+        if(posicao==Lista.getUltimo()){
+            System.out.println("Nó "+posicao+" é o último nó da lista ");
+        }else{
+            System.out.println("Nó "+posicao+" não é o último nó da lista ");
         }
     }
-    public void Before(int posicao) {
-        if(!isEmpty()) {
-            for (int i = 0; i <= posicao; i++) {
-                this.atual = atual.getNext();
-            }
+
+    public void isFirst(No posicao) {
+        if(posicao==Lista.getPrimeiro()){
+            System.out.println("Nó "+posicao+" é o primeiro nó da lista ");
+        }else{
+            System.out.println("Nó "+posicao+" não é o primeiro nó da lista ");
         }
-        System.out.println("Anterior aponta para: "+atual.getPrev());
-    }
-
-    public void After(int posicao) {
-        if(!isEmpty()) {
-            for (int i = 0; i <= posicao; i++) {
-                this.atual = atual.getNext();
-            }
-        }
-        System.out.println("Próximo aponta para: "+atual.getNext());
-
-    }
-
-    public void isLast() {
-
-    }
-
-    public void isFirst() {
-
     }
 
     public void size() {
-        System.out.println("Tamnho da lista: "+Lista.getTamanho());
+        System.out.println("Tamanho da lista: "+Lista.getTamanho());
     }
 
     public boolean isEmpty() {
-        return Lista.getPrimeiro()==null;
+        //se o próximo do head for o tail, significa que a lista está vazia
+        return head.getNext()==tail;
     }
 
-    public String toString(){
-        String texto = "";
-        texto += String.format("%s ", atual.toString());
-
-        if (atual.getNext() != null)
-            texto += String.format("=> %s", atual.getNext().toString());
-
-        if (atual.getPrev() != null)
-            texto += String.format("<= %s", atual.getPrev().toString());
-
-        return texto;
+    public String toString() {
+     return Lista.toString();
     }
 }
