@@ -103,9 +103,9 @@ public class ListaEncadeada {
         String s = "";
         No atual = primeiro;
         while(atual!=null){
-            s = s + " "+atual.getElement();
+            s = s + " => "+atual.getElement();
             atual = atual.getNext();
         }
-        return s;
+        return "head [null] "+ s+ " => tail [null]";
     }
 }

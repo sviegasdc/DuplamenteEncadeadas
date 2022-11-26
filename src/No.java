@@ -12,11 +12,11 @@ public class No {
         return element;
     }
 
-    public void setElement(Object item ) {
+    public void setElement(Object item) {
         this.element = item;
     }
 
-    public No getNext(){
+    public No getNext() {
         return next;
     }
 
@@ -24,7 +24,7 @@ public class No {
         this.next = next;
     }
 
-    public No getPrev(){
+    public No getPrev() {
         return prev;
     }
 
@@ -34,16 +34,6 @@ public class No {
 
     @Override
     public String toString() {
-        String texto = "";
-        texto += String.format("%s ", this.element.toString());
-
-        if (this.getNext() != null)
-            texto += String.format("=> %s", this.getNext().toString());
-
-        if (this.getPrev() != null)
-            texto += String.format("<= %s", this.getPrev().toString());
-
-        return texto;
+        return getElement().toString();
     }
-
 }

@@ -19,6 +19,12 @@ public class TADLista implements ITADLista {
         this.tamanho = 0;
     }
 
+    public No first(){
+        return this.primeiro;
+    }
+    public No last(){
+        return this.ultimo;
+    }
     public void replaceElement(No posicao, Object novoElemento) {
         No novoNo = new No(novoElemento);
         posicao.setElement(novoNo);
@@ -26,8 +32,12 @@ public class TADLista implements ITADLista {
 
     }
     public void swapElement(No posicaoElemento1, No posicaoElemento2) {
-
+        atual = posicaoElemento1;
+        posicaoElemento1.setElement(posicaoElemento2);
+        posicaoElemento2.setElement(atual);
+        //não é necessário setar o anterior e o próximo pq é basicamente um replace?
     }
+
 
     public void insertBefore(No posicao, Object novoElemento) {
         No novoNo = new No(novoElemento);
