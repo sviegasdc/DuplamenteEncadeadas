@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c08b905-376f-43da-bad4-dea537ce140e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ITADVetor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TADVetor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ITADSequencia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TADSequencia.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ListaEncadeada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListaEncadeada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/No.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/No.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TADLista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TADLista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>

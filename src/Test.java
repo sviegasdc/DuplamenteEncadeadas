@@ -1,6 +1,8 @@
 public class Test {
     public static void main(String[] args) {
-        TADVetor Lista = new TADVetor();
+        TADSequencia Lista = new TADSequencia();
+        Lista.insertFirst("batata");
+        Lista.insertLast("xavier");
         System.out.println(Lista);
         System.out.println("Lista vazia: "+Lista.isEmpty());
     }
