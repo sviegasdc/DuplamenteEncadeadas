@@ -1,4 +1,4 @@
-public class TADSequencia implements ITADSequencia{
+public class  TADSequencia implements ITADSequencia{
     private ListaEncadeada Lista;
     private No primeiro;
     private No head;
@@ -32,17 +32,18 @@ public class TADSequencia implements ITADSequencia{
         //não é necessário setar o anterior e o próximo pq é basicamente um replace?
     }
 
-    public void insertBefore(No posicao, Object novoElemento) {
+    public No insertBefore(No posicao, Object novoElemento) {
         No novoNo = new No(novoElemento);
-        //novoNo <= posição
-        posicao.setPrev(novoNo);
-        //novoNo => posição
-        novoNo.setNext(posicao);
         //anterior (do posição) <= novoNo
         novoNo.setPrev(posicao.getPrev());
-        //novoNo => próximo (do atual)
-        novoNo.setNext(posicao.getNext());
+        //novoNo => posição
+        novoNo.setNext(posicao);
+        //anterior => novoNo
+        (posicao.getPrev()).setNext(novoNo);
+        //novoNo <= posição
+        posicao.setPrev(novoNo);
         tamanho++;
+        return novoNo;
     }
 
     public void insertAfter(No posicao, Object novoElemento) {
@@ -58,18 +59,27 @@ public class TADSequencia implements ITADSequencia{
         tamanho++;
     }
 
-    public void insertFirst(Object novoElemento) {
+    public No insertFirst(Object novoElemento) {
         No novoNo = new No(novoElemento);
-        Lista.adicionarInicio(novoElemento);
-        head.setNext(novoNo);
+//        Lista.adicionarInicio(novoElemento);
         novoNo.setPrev(head);
+        novoNo.setNext(head.getNext());
+        (head.getNext()).setPrev(novoNo);
+        head.setNext(novoNo);
+        return novoNo;
     }
 
-    public void insertLast(Object novoElemento) {
+    public No insertLast(Object novoElemento) {
         No novoNo = new No(novoElemento);
-        Lista.adicionarUltimo(novoElemento);
-        tail.setPrev(novoNo);
+        //novoNo => tail
         novoNo.setNext(tail);
+        //anterior (do tail) => novoNo
+        (tail.getPrev()).setNext(novoNo);
+        //anterior (do tail) <= novoNo
+        novoNo.setPrev(tail.getPrev());
+        //novoNo <= tail
+        tail.setPrev(novoNo);
+        return novoNo;
     }
 
     public void removePorPosicao(No posicao) {
@@ -140,6 +150,12 @@ public class TADSequencia implements ITADSequencia{
     }
 
     public String toString() {
-        return Lista.toString();
+        String s = "";
+        No atual = head.getNext();
+        while(atual!=tail){
+            s = s + " => "+atual.getElement();
+            atual = atual.getNext();
+        }
+        return "head [null] "+ s+ " => tail [null]";
     }
 }
